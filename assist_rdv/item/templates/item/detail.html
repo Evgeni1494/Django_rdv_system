@@ -1,0 +1,54 @@
+{% extends 'core/base.html' %}
+
+
+
+{% block title %}{{item.name}}{% endblock title %}
+
+
+{% block content %}
+<div class=GridDetail>
+    <div class=DetailImage>
+        <img src="{{item.image.url}}" alt="">
+    </div>
+    <div class=NameArticle>
+        <h1> {{item.name}}</h1>
+        <p class=PriceArticle>Price :{{item.price}}</p>
+        <p class=SellerArticle>Seller:{{item.created_by.username}}</p>
+        {% if item.description %}
+        <p class=DescArticle>Description<br>  
+            {{item.description}}
+        </p>
+        {% endif %}
+
+        <a href="#">Contact Seller</a>
+    
+    </div>
+</div>
+<div class=NewItemsDisplay>
+    <h2 class=TitleNewItems>Related Items</h2>
+    <div class=GridItems>
+        {% for item in related_items %}
+        <div>
+            <a href="{% url 'item:detail' item.id %}">Click</a>
+            <div>
+                <img src="{{item.image.url}}" alt="">
+            </div>
+            <div>
+                <h2>{{item.name}}</h2>
+                <p>Price : {{item.price}}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
