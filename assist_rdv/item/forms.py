@@ -15,7 +15,18 @@ class NewItemForm(forms.ModelForm):
             
         }
         
-
+class EditItemForm(forms.ModelForm):
+    class Meta:
+        model = Item
+        fields = ('name','description','price','image','is_sold',)
+        
+        widgets = {
+            'name':forms.TextInput,
+            'description':forms.Textarea,
+            'price':forms.TextInput,
+            'image':forms.FileInput,
+            
+        }
 
 
 

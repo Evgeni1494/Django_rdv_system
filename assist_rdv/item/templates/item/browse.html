@@ -1,0 +1,43 @@
+{% extends 'core/base.html' %}
+
+
+{% block title %}Browse{% endblock title %}
+
+
+{% block content %}
+
+<div class=BrowseContent>
+    <div>
+        Side Bar
+        <form method = "get" action="{% url 'item:browse' %}">
+            <input name="query" class=ListSearch type="text" value="{{query}}" placeholder="Find a bike, a chair ou a car.">
+
+            <button class=SearchButton>Search</button>
+        </form>
+    </div>
+    <div>
+        <div class=GridItemsBrowse>
+            {% for item in items %}
+            <div>
+                <a href="{% url 'item:detail' item.id %}">Click</a>
+                <div>
+                    <img src="{{item.image.url}}" alt="">
+                </div>
+                <div>
+                    <h2>{{item.name}}</h2>
+                    <p>Price : {{item.price}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+
+
+
+
+
+
