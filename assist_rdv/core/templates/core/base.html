@@ -13,7 +13,24 @@
             <a href="/" class= Logo>Puddle</a>
             <ul class = ItemsNav>
                 <li><a href="{% url 'core:contact' %}">Contact</a></li>
-                <li><a href="#">About</a></li>
+                <li><form method="post">
+                    {% csrf_token %}
+                    <div>
+                      <label for="appoint_date">Date de rendez-vous :</label>
+                      <input type="text" id="appoint_date" name="appoint_date" />
+                    </div>
+                    <div>
+                      <label for="appoint_time">Heure de rendez-vous :</label>
+                      <input type="text" id="appoint_time" name="appoint_time" />
+                    </div>
+                    <div>
+                      <label for="appoint_reason">Raison de rendez-vous :</label>
+                      <textarea id="appoint_reason" name="appoint_reason"></textarea>
+                    </div>
+                    <input type="submit" value="Prendre rendez-vous">
+                  </form>
+                  
+                </li>
                 <li><a href="{% url 'item:new' %}">New Item</a></li>
                 <li><a href="{% url 'item:browse' %}">Browse</a></li>
                 {% if request.user.is_authenticated %}

@@ -4,6 +4,18 @@ from item.models import Category, Item
 from django.contrib.auth import logout
 from .forms import SignUpForm
 from django.contrib.auth.decorators import login_required
+from .forms import AppointmentForm
+
+@login_required
+def make_appointment(request):
+    if request.method == 'POST':
+        form = AppointmentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('appointments')
+    else:
+        form = AppointmentForm()
+    return render(request, 'make_appointment.html', {'form': form})
 
 
 def logoutUser(request):
