@@ -1,12 +1,15 @@
 from django.shortcuts import render, redirect
 
 from item.models import Category, Item
-
+from django.contrib.auth import logout
 from .forms import SignUpForm
+from django.contrib.auth.decorators import login_required
 
 
-
-
+def logoutUser(request):
+    logout(request)
+    
+    return redirect('/login')    
 
 
 
@@ -39,7 +42,6 @@ def signup(request):
     return render(request,'core/signup.html',{
         'form':form
     })
-
 
 
 

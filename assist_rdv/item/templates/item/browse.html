@@ -14,6 +14,17 @@
 
             <button class=SearchButton>Search</button>
         </form>
+
+        <p class= TitleCategories>Categories</p>
+        <ul class= ListCategories>
+            
+            {% for category in categories %}
+                <li> 
+                    <a href="{% url 'item:browse' %}?query={{query}}&category={{category.id}}">{{category.name}}</a>
+                    
+                </li>
+            {% endfor %}
+        </ul>
     </div>
     <div>
         <div class=GridItemsBrowse>
